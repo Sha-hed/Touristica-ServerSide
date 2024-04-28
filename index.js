@@ -32,88 +32,85 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/spots/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await TouristDestination.findOne(query);
-      res.send(result);
-    });
-    app.get("/mySpots/:email", async (req, res) => {
-      const email = req.params.email;
-      const query = { email: email };
-      const result = await TouristDestination.find(query).toArray();
-      res.send(result);
-    });
+    // app.get("/spots/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: new ObjectId(id) };
+    //   const result = await TouristDestination.findOne(query);
+    //   res.send(result);
+    // });
+    // app.get("/mySpots/:email", async (req, res) => {
+    //   const email = req.params.email;
+    //   const query = { email: email };
+    //   const result = await TouristDestination.find(query).toArray();
+    //   res.send(result);
+    // });
 
-    app.get("/getByCountryName/:country_name", async (req, res) => {
-      const country = req.params.country_name;
-      const query = { country_name: country };
-      const result = await TouristDestination.find(query).toArray();
-      res.send(result);
-    });
+    // app.get("/getByCountryName/:country_name", async (req, res) => {
+    //   const country = req.params.country_name;
+    //   const query = { country_name: country };
+    //   const result = await TouristDestination.find(query).toArray();
+    //   res.send(result);
+    // });
 
-    app.get("/sort", async (req, res) => {
-      const tourPlace = await TouristDestination.find().toArray();
-      tourPlace.sort((a, b) => a.average_cost - b.average_cost);
-      res.send(tourPlace);
-    });
+    // app.get("/sort", async (req, res) => {
+    //   const tourPlace = await TouristDestination.find().toArray();
+    //   tourPlace.sort((a, b) => a.average_cost - b.average_cost);
+    //   res.send(tourPlace);
+    // });
 
-    app.get("/country", async (req, res) => {
-      const result = await Countries.find().toArray();
-      res.send(result);
-    });
     // app.get("/country", async (req, res) => {
     //   const result = await Countries.find().toArray();
     //   res.send(result);
     // });
-    app.get('/country/:id', async(req, res)=>{
-      const id = req.params.id;
-      const filter = {_id : new ObjectId(id)};
-      const result = await Countries.findOne(filter);
-      res.send(result);
-    })
+    
+    // app.get('/country/:id', async(req, res)=>{
+    //   const id = req.params.id;
+    //   const filter = {_id : new ObjectId(id)};
+    //   const result = await Countries.findOne(filter);
+    //   res.send(result);
+    // })
 
-    app.post("/spots", async (req, res) => {
-      const spots = req.body;
-      console.log(spots);
-      const result = await TouristDestination.insertOne(spots);
-      res.send(result);
-    });
+    // app.post("/spots", async (req, res) => {
+    //   const spots = req.body;
+    //   console.log(spots);
+    //   const result = await TouristDestination.insertOne(spots);
+    //   res.send(result);
+    // });
 
-    app.patch("/spots/:id", async(req, res)=>{
-      const id = req.params.id;
-      const user = req.body;
-      const filter = { _id : new ObjectId(id) };
-      const options = { upsert: true };
-      const updateDoc = {
-        $set: {
-          spot_name : user.spot_name,
-          country_name : user.country_name,
-          location: user.location,
-          season  : user.season,
-          average_cost : user.average_cost,
-          travel_time : user.travel_time,
-          visitor : user.visitor,
-          photo : user.photo,
-          description: user.description
-        },
-      };
-      const result = await TouristDestination.updateOne(filter, updateDoc, options);
-      res.send(result);
-    })
+    // app.patch("/spots/:id", async(req, res)=>{
+    //   const id = req.params.id;
+    //   const user = req.body;
+    //   const filter = { _id : new ObjectId(id) };
+    //   const options = { upsert: true };
+    //   const updateDoc = {
+    //     $set: {
+    //       spot_name : user.spot_name,
+    //       country_name : user.country_name,
+    //       location: user.location,
+    //       season  : user.season,
+    //       average_cost : user.average_cost,
+    //       travel_time : user.travel_time,
+    //       visitor : user.visitor,
+    //       photo : user.photo,
+    //       description: user.description
+    //     },
+    //   };
+    //   const result = await TouristDestination.updateOne(filter, updateDoc, options);
+    //   res.send(result);
+    // })
 
-    app.delete("/spots/:id", async(req, res)=>{
-      const id = req.params.id;
-      const filter = {_id : new ObjectId(id)};
-      const result = await TouristDestination.deleteOne(filter);
-      res.send(result);
-    })
+    // app.delete("/spots/:id", async(req, res)=>{
+    //   const id = req.params.id;
+    //   const filter = {_id : new ObjectId(id)};
+    //   const result = await TouristDestination.deleteOne(filter);
+    //   res.send(result);
+    // })
 
-    app.post("/insertCountry", async (req, res) => {
-      const user = req.body;
-      const result = await Countries.insertOne(user);
-      res.send(result);
-    });
+    // app.post("/insertCountry", async (req, res) => {
+    //   const user = req.body;
+    //   const result = await Countries.insertOne(user);
+    //   res.send(result);
+    // });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
