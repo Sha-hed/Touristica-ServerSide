@@ -38,12 +38,12 @@ async function run() {
       const result = await TouristDestination.findOne(query);
       res.send(result);
     });
-    // app.get("/mySpots/:email", async (req, res) => {
-    //   const email = req.params.email;
-    //   const query = { email: email };
-    //   const result = await TouristDestination.find(query).toArray();
-    //   res.send(result);
-    // });
+    app.get("/mySpots/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await TouristDestination.find(query).toArray();
+      res.send(result);
+    });
 
     // app.get("/getByCountryName/:country_name", async (req, res) => {
     //   const country = req.params.country_name;
