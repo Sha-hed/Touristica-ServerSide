@@ -96,18 +96,18 @@ async function run() {
       res.send(result);
     })
 
-    app.delete("/spots/:id", async(req, res)=>{
-      const id = req.params.id;
-      const filter = {_id : new ObjectId(id)};
-      const result = await TouristDestination.deleteOne(filter);
-      res.send(result);
-    })
-
-    // app.post("/insertCountry", async (req, res) => {
-    //   const user = req.body;
-    //   const result = await Countries.insertOne(user);
+    // app.delete("/spots/:id", async(req, res)=>{
+    //   const id = req.params.id;
+    //   const filter = {_id : new ObjectId(id)};
+    //   const result = await TouristDestination.deleteOne(filter);
     //   res.send(result);
-    // });
+    // })
+
+    app.post("/insertCountry", async (req, res) => {
+      const user = req.body;
+      const result = await Countries.insertOne(user);
+      res.send(result);
+    });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
