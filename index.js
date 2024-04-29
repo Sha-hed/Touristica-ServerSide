@@ -4,9 +4,6 @@ require("dotenv").config();
 const cors = require("cors");
 const port = process.env.PORT || 5000;
 
-// Assignment_10
-// tsN1m6ioaOMxdqhV
-
 app.use(cors());
 app.use(express.json());
 
@@ -45,30 +42,30 @@ async function run() {
       res.send(result);
     });
 
-    // app.get("/getByCountryName/:country_name", async (req, res) => {
-    //   const country = req.params.country_name;
-    //   const query = { country_name: country };
-    //   const result = await TouristDestination.find(query).toArray();
-    //   res.send(result);
-    // });
+    app.get("/getByCountryName/:country_name", async (req, res) => {
+      const country = req.params.country_name;
+      const query = { country_name: country };
+      const result = await TouristDestination.find(query).toArray();
+      res.send(result);
+    });
 
-    // app.get("/sort", async (req, res) => {
-    //   const tourPlace = await TouristDestination.find().toArray();
-    //   tourPlace.sort((a, b) => a.average_cost - b.average_cost);
-    //   res.send(tourPlace);
-    // });
+    app.get("/sort", async (req, res) => {
+      const tourPlace = await TouristDestination.find().toArray();
+      tourPlace.sort((a, b) => a.average_cost - b.average_cost);
+      res.send(tourPlace);
+    });
 
-    // app.get("/country", async (req, res) => {
-    //   const result = await Countries.find().toArray();
-    //   res.send(result);
-    // });
+    app.get("/country", async (req, res) => {
+      const result = await Countries.find().toArray();
+      res.send(result);
+    });
     
-    // app.get('/country/:id', async(req, res)=>{
-    //   const id = req.params.id;
-    //   const filter = {_id : new ObjectId(id)};
-    //   const result = await Countries.findOne(filter);
-    //   res.send(result);
-    // })
+    app.get('/country/:id', async(req, res)=>{
+      const id = req.params.id;
+      const filter = {_id : new ObjectId(id)};
+      const result = await Countries.findOne(filter);
+      res.send(result);
+    })
 
     // app.post("/spots", async (req, res) => {
     //   const spots = req.body;
@@ -99,18 +96,18 @@ async function run() {
     //   res.send(result);
     // })
 
-    // app.delete("/spots/:id", async(req, res)=>{
-    //   const id = req.params.id;
-    //   const filter = {_id : new ObjectId(id)};
-    //   const result = await TouristDestination.deleteOne(filter);
-    //   res.send(result);
-    // })
-
-    app.post("/insertCountry", async (req, res) => {
-      const user = req.body;
-      const result = await Countries.insertOne(user);
+    app.delete("/spots/:id", async(req, res)=>{
+      const id = req.params.id;
+      const filter = {_id : new ObjectId(id)};
+      const result = await TouristDestination.deleteOne(filter);
       res.send(result);
-    });
+    })
+
+    // app.post("/insertCountry", async (req, res) => {
+    //   const user = req.body;
+    //   const result = await Countries.insertOne(user);
+    //   res.send(result);
+    // });
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
