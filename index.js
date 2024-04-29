@@ -74,27 +74,27 @@ async function run() {
     //   res.send(result);
     // });
 
-    // app.patch("/spots/:id", async(req, res)=>{
-    //   const id = req.params.id;
-    //   const user = req.body;
-    //   const filter = { _id : new ObjectId(id) };
-    //   const options = { upsert: true };
-    //   const updateDoc = {
-    //     $set: {
-    //       spot_name : user.spot_name,
-    //       country_name : user.country_name,
-    //       location: user.location,
-    //       season  : user.season,
-    //       average_cost : user.average_cost,
-    //       travel_time : user.travel_time,
-    //       visitor : user.visitor,
-    //       photo : user.photo,
-    //       description: user.description
-    //     },
-    //   };
-    //   const result = await TouristDestination.updateOne(filter, updateDoc, options);
-    //   res.send(result);
-    // })
+    app.patch("/spots/:id", async(req, res)=>{
+      const id = req.params.id;
+      const user = req.body;
+      const filter = { _id : new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          spot_name : user.spot_name,
+          country_name : user.country_name,
+          location: user.location,
+          season  : user.season,
+          average_cost : user.average_cost,
+          travel_time : user.travel_time,
+          visitor : user.visitor,
+          photo : user.photo,
+          description: user.description
+        },
+      };
+      const result = await TouristDestination.updateOne(filter, updateDoc, options);
+      res.send(result);
+    })
 
     app.delete("/spots/:id", async(req, res)=>{
       const id = req.params.id;
