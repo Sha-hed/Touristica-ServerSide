@@ -67,12 +67,12 @@ async function run() {
       res.send(result);
     })
 
-    // app.post("/spots", async (req, res) => {
-    //   const spots = req.body;
-    //   console.log(spots);
-    //   const result = await TouristDestination.insertOne(spots);
-    //   res.send(result);
-    // });
+    app.post("/spots", async (req, res) => {
+      const spots = req.body;
+      console.log(spots);
+      const result = await TouristDestination.insertOne(spots);
+      res.send(result);
+    });
 
     app.patch("/spots/:id", async(req, res)=>{
       const id = req.params.id;
